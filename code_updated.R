@@ -1,4 +1,5 @@
 data <- read.csv("groupdata.csv")
+set.seed(123)
 
 exp_pts <- ((data$Omega/data$R)^2)*data$P*(data$R/data$R_0)*(data$Omega/data$Omega_0)*(data$D-data$D_0)
 
@@ -97,6 +98,9 @@ for (i in 1:48){
 graph$Expected.Points <- vals
 graph$Expected.Points[40] <- 0
 graph$Expected.Points[62] <- 0
+graph$Team[40] <- "Australia"
+graph$Team[42] <- "Australia"
+graph$Team[45] <- "Australia"
 
 library(ggplot2)
 
@@ -105,59 +109,59 @@ ggplot(graph[1:12,], aes(fill=Team, y=Expected.Points, x=Match)) +
   theme_minimal() +
   labs(x = "Match number", y = 'Expected Points', title= "Group A predictions") +
   theme(text = element_text(size=18, face = 'bold'), plot.title = element_text(hjust=0.5, size=25)) +
-  scale_fill_manual('Team', values = c('pink', 'steelblue','coral2','orange'))
+  scale_fill_manual('Team', values = c('yellow', 'orange','darkred','darkgreen'))
 
 ggplot(graph[13:24,], aes(fill=Team, y=Expected.Points, x=Match)) +
-  geom_bar(Team = 'stack', stat='identity') +
+  geom_bar(Team = 'stack', stat='identity', colour = "black") +
   theme_minimal() +
   labs(x = "Match number", y = 'Expected Points', title= "Group B predictions") +
   theme(text = element_text(size=18, face = 'bold'), plot.title = element_text(hjust=0.5, size=25))+
-  scale_fill_manual('Team', values = c('pink', 'steelblue','coral2','orange'))
+  scale_fill_manual('Team', values = c('white', 'brown2','blue3','darkgreen'))
 
 ggplot(graph[25:36,], aes(fill=Team, y=Expected.Points, x=Match)) +
-  geom_bar(Team = 'stack', stat='identity') +
+  geom_bar(Team = 'stack', stat='identity', colour="black") +
   theme_minimal() +
   labs(x = "Match number", y = 'Expected Points', title= "Group C predictions") +
   theme(text = element_text(size=18, face = 'bold'), plot.title = element_text(hjust=0.5, size=25))+
-  scale_fill_manual('Team', values = c('pink', 'steelblue','coral2','orange'))
+  scale_fill_manual('Team', values = c('deepskyblue', 'white','brown3','darkgreen'))
 
 ggplot(graph[37:48,], aes(fill=Team, y=Expected.Points, x=Match)) +
-  geom_bar(Team = 'stack', stat='identity') +
+  geom_bar(Team = 'stack', stat='identity', colour="black") +
   theme_minimal() +
   labs(x = "Match number", y = 'Expected Points', title= "Group D predictions") +
   theme(text = element_text(size=18, face = 'bold'), plot.title = element_text(hjust=0.5, size=25))+
-  scale_fill_manual('Team', values = c('pink', 'steelblue','coral2','orange'))
+  scale_fill_manual('Team', values = c('yellow', 'brown3','blue3','white'))
 
 ggplot(graph[49:60,], aes(fill=Team, y=Expected.Points, x=Match)) +
   geom_bar(Team = 'stack', stat='identity') +
   theme_minimal() +
   labs(x = "Match number", y = 'Expected Points', title= "Group E predictions") +
   theme(text = element_text(size=18, face = 'bold'), plot.title = element_text(hjust=0.5, size=25))+
-  scale_fill_manual('Team', values = c('pink', 'steelblue','coral2','orange'))
+  scale_fill_manual('Team', values = c('brown3', 'black','blue4','yellow'))
 
 ggplot(graph[61:72,], aes(fill=Team, y=Expected.Points, x=Match)) +
-  geom_bar(Team = 'stack', stat='identity') +
+  geom_bar(Team = 'stack', stat='identity', colour="black") +
   theme_minimal() +
   labs(x = "Match number", y = 'Expected Points', title= "Group F predictions") +
   theme(text = element_text(size=18, face = 'bold'), plot.title = element_text(hjust=0.5, size=25))+
-  scale_fill_manual('Team', values = c('pink', 'steelblue','coral2','orange'))
+  scale_fill_manual('Team', values = c('black', 'brown3','white','darkgreen'))
 
 ggplot(graph[73:84,], aes(fill=Team, y=Expected.Points, x=Match)) +
-  geom_bar(Team = 'stack', stat='identity') +
+  geom_bar(Team = 'stack', stat='identity', colour='black') +
   theme_minimal() +
   labs(x = "Match number", y = 'Expected Points', title= "Group G predictions") +
   theme(text = element_text(size=18, face = 'bold'), plot.title = element_text(hjust=0.5, size=25))+
-  scale_fill_manual('Team', values = c('pink', 'steelblue','coral2','orange'))
+  scale_fill_manual('Team', values = c('yellow', 'darkgreen','brown3','white'))
 
 ggplot(graph[85:96,], aes(fill=Team, y=Expected.Points, x=Match)) +
-  geom_bar(Team = 'stack', stat='identity') +
+  geom_bar(Team = 'stack', stat='identity', colour='black') +
   theme_minimal() +
   labs(x = "Match number", y = 'Expected Points', title= "Group H predictions") +
   theme(text = element_text(size=18, face = 'bold'), plot.title = element_text(hjust=0.5, size=25))+
-  scale_fill_manual('Team', values = c('pink', 'steelblue','coral2','orange'))
+  scale_fill_manual('Team', values = c('black', 'white','brown3','cornflowerblue'))
 
-
-
+expected_pts <- data[, 14:15]
+write.csv(expected_pts, "expected_pts.csv")
 
 # data2 <- read.csv("groupdata2.csv")
 # ggplot(graph[1:12,], aes(fill=Team, y=Expected.Points, x=Match)) +
